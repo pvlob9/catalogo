@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courotop | Catálogo de Cores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #773532;
+      --secondary-color: #f5f0e1;
+      --text-color: #333;
+      --box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-color);
+      background-color: var(--secondary-color);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem; /* Tamanho aumentado */
+      color: var(--text-color);
+      text-decoration: none;
+      transition: opacity 0.3s;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeDown 1s ease forwards;
+    }
+
+    .about-link {
+      font-size: 1.8rem; /* Tamanho aumentado e igual ao logo */
+      color: var(--text-color);
+      text-decoration: none;
+      transition: opacity 0.3s;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeDown 1s ease forwards 0.3s; /* Pequeno atraso para efeito escalonado */
+    }
+
+    /* Animação de entrada */
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo:hover, .about-link:hover {
+      opacity: 0.7;
+    }
+
+    /* Primeira seção */
+    .main-section {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5%;
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .titulo {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: bold;
+      line-height: 1.1;
+      flex: 1;
+      min-width: 300px;
+      color: #773532; /* Cor alterada conforme solicitado */
+    }
+
+    /* Animação para cada linha do título */
+    .titulo-linha {
+      display: block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .titulo-linha:nth-child(1) {
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .titulo-linha:nth-child(2) {
+      animation: fadeUp 0.8s ease forwards 0.9s;
+    }
+
+    .titulo-linha:nth-child(3) {
+      animation: fadeUp 0.8s ease forwards 1.2s;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 20px;
+      max-width: 100%;
+    }
+
+    .catalogo a {
+      display: block;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(-20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animação sequencial para as imagens */
+    .catalogo a:nth-child(1) { animation: fadeDown 0.5s ease forwards 1.5s; }
+    .catalogo a:nth-child(2) { animation: fadeDown 0.5s ease forwards 1.6s; }
+    .catalogo a:nth-child(3) { animation: fadeDown 0.5s ease forwards 1.7s; }
+    .catalogo a:nth-child(4) { animation: fadeDown 0.5s ease forwards 1.8s; }
+    .catalogo a:nth-child(5) { animation: fadeDown 0.5s ease forwards 1.9s; }
+    .catalogo a:nth-child(6) { animation: fadeDown 0.5s ease forwards 2.0s; }
+    .catalogo a:nth-child(7) { animation: fadeDown 0.5s ease forwards 2.1s; }
+    .catalogo a:nth-child(8) { animation: fadeDown 0.5s ease forwards 2.2s; }
+    .catalogo a:nth-child(9) { animation: fadeDown 0.5s ease forwards 2.3s; }
+    .catalogo a:nth-child(10) { animation: fadeDown 0.5s ease forwards 2.4s; }
+
+    .catalogo img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .catalogo a:hover {
+      transform: translateY(-10px);
+    }
+
+    .catalogo a:hover img {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    /* Legenda ao passar o mouse */
+    .catalogo a::after {
+      content: attr(data-color);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f5f0e1;
+      color: #333;
+      text-align: center;
+      padding: 8px 0;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .catalogo a:hover::after {
+      transform: translateY(0);
+    }
+
+    /* Triângulo scroll */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards 2.5s; /* Aparecer após todas as animações */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 20px solid var(--primary-color);
+      margin: 0 auto;
+      transition: transform 0.3s;
+    }
+
+    .scroll-down:hover .triangle {
+      transform: translateY(5px);
+    }
+
+    .scroll-text {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+    }
+
+    /* Segunda seção */
+    .second-section {
+      min-height: 100vh;
+      padding: 80px 5%;
+      background-color: #f5f0e1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Box com informações sobre a matéria prima */
+    .info-box {
+      max-width: 800px;
+      width: 100%;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: var(--box-shadow);
+      padding: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards 0.3s;
+    }
+
+    .info-box h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .info-box p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--text-color);
+      text-align: justify;
+    }
+
+    /* Footer */
+    .footer {
+      color: #333;
+      text-align: center;
+      padding: 20px 0;
+      width: 100%;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+    }
+
+    /* Responsividade aprimorada */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: 60px;
+      }
+      
+      .titulo {
+        text-align: center;
+        font-size: clamp(2.5rem, 7vw, 5rem);
+      }
+      
+      .catalogo {
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+      }
+
+      .main-section {
+        padding: 0 3%;
+      }
+      
+      .info-box {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo, .about-link {
+        font-size: 1.4rem; /* Mantendo tamanho maior, mas adequado para mobile */
+      }
+      
+      .catalogo {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .catalogo img {
+        height: 120px;
+      }
+      
+      .second-section {
+        padding: 60px 15px;
+      }
+
+      .titulo {
+        font-size: clamp(2rem, 6vw, 4rem);
+        margin-bottom: 20px;
+      }
+
+      .main-section {
+        padding: 0 4%;
+        min-height: 70vh;
+      }
+
+      .container {
+        margin-bottom: 50px;
+      }
+      
+      .info-box {
+        padding: 25px 20px;
+      }
+      
+      .info-box h2 {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Ajuste extra para dispositivos muito pequenos */
+    @media (max-width: 360px) {
+      .catalogo {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .catalogo img {
+        height: 100px;
+      }
+
+      .titulo {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+      }
+      
+      .logo, .about-link {
+        font-size: 1.2rem; /* Reduzindo mais um pouco para telas muito pequenas */
+      }
+      
+      .info-box {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="couro.html" class="logo">Couro Automotivo</a>
+    <a href="#about" class="about-link">Sobre.</a>
+  </header>
+
+  <section class="main-section">
+    <div class="container">
+      <div class="titulo">
+        <span class="titulo-linha">catálogo</span>
+        <span class="titulo-linha">de cores</span>
+        <span class="titulo-linha">e padrões</span>
+      </div>
+
+      <div class="catalogo">
+        <!-- Imagens com links, cores e descrições -->
+        <a href="" class="image-link" data-color="Preto">
+          <img src="https://i.imgur.com/Ix53axP.jpeg" alt="Preto">
+        </a>
+        <a href="https://i.imgur.com/geKwWWT.jpeg" class="image-link" data-color="Grafite">
+          <img src="https://i.imgur.com/geKwWWT.jpeg" alt="Grafite">
+        </a>
+        <a href="https://i.imgur.com/brQkSfw.jpeg" class="image-link" data-color="3694">
+          <img src="https://i.imgur.com/brQkSfw.jpeg" alt="Cor 3694">
+        </a>
+        <a href="https://i.imgur.com/dBaVxan.jpeg" class="image-link" data-color="Bege">
+          <img src="https://i.imgur.com/dBaVxan.jpeg" alt="Bege">
+        </a>
+        <a href="https://i.imgur.com/YBIK5xi.jpeg" class="image-link" data-color="Burgundy">
+          <img src="https://i.imgur.com/YBIK5xi.jpeg" alt="Burgundy">
+        </a>
+        <a href="https://i.imgur.com/Q32WQDU.jpeg" class="image-link" data-color="Havana">
+          <img src="https://i.imgur.com/Q32WQDU.jpeg" alt="Havana">
+        </a>
+        <a href="https://i.imgur.com/i4wQlid.jpeg" class="image-link" data-color="Marrom">
+          <img src="https://i.imgur.com/i4wQlid.jpeg" alt="Marrom">
+        </a>
+        <a href="https://i.imgur.com/tFFJBRt.jpeg" class="image-link" data-color="Vermelho">
+          <img src="https://i.imgur.com/tFFJBRt.jpeg" alt="Vermelho">
+        </a>
+        <a href="https://i.imgur.com/NK4G9jI.jpeg" class="image-link" data-color="Whisky">
+          <img src="https://i.imgur.com/NK4G9jI.jpeg" alt="Whisky">
+        <a href="https://i.imgur.com/FzFRXNH.jpeg" class="image-link" data-color="Ice Color">
+          <img src="https://i.imgur.com/FzFRXNH.jpeg" alt="Ice Color">
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-down" onclick="document.querySelector('.second-section').scrollIntoView({ behavior: 'smooth' })">
+      <div class="triangle"></div>
+      <div class="scroll-text"></div>
+    </div>
+  </section>
+
+  <section class="second-section" id="about">
+    <div class="info-box">
+      <h2>Um pouco sobre nosso Couro</h2>
+      <p>O couro é um insumo premium, amplamente reconhecido por seu apelo estético, durabilidade e valor agregado. No setor automotivo, sua aplicação exige o cumprimento de rigorosos critérios de performance estabelecidos por normas técnicas internacionais, especialmente no que se refere à resistência à radiação UV, à umidade e à deformação por atrito constante.<br>Quando não se adota couro de alta performance, os impactos são perceptíveis em curto espaço de tempo: desbotamento precoce, condensação interna ao acionar o sistema de climatização e perda do aspecto original, comprometendo tanto a experiência do usuário quanto a valorização do veículo.<br>Investir em couro automotivo de excelência não é apenas uma escolha estética é uma decisão estratégica que assegura durabilidade, conforto e percepção de qualidade superior para clientes cada vez mais exigentes.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="copyright">
+      © 2025 Courotop. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // Suaviza todos os links âncora
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
